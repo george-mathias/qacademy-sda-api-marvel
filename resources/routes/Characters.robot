@@ -1,5 +1,6 @@
 *** Settings ***
 Documentation        acoes da rota /characters
+Library    RequestsLibrary
 
 *** Keywords ***
 POST New Character
@@ -11,3 +12,23 @@ POST New Character
     ...            expected_status=any
 
     [Return]    ${response}
+
+GET Character By Id
+    [Arguments]    ${character_id}
+
+    ${response}    GET
+    ...            ${API_URL}/characters/${character_id}
+    ...            headers=${HEADERS}
+    ...            expected_status=any
+
+    [Return]       ${response}
+
+DELETE Character By Id
+    [Arguments]    ${character_id}
+
+    ${response}    DELETE
+    ...            ${API_URL}/characters/${character_id}
+    ...            headers=${HEADERS}
+    ...            expected_status=any
+
+    [Return]       ${response}
